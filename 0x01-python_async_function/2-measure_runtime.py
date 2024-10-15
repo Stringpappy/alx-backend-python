@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+""" 
+async
+"""
 import time
 import asyncio
 
 wait_n = __import__("1-concurrent_cooroutines").wait_n
-
 
 
 def measure_time(n: int, max_dlay: int) -> float:
