@@ -1,19 +1,13 @@
 import asyncio
-from random import randint
+import random
 
-# Assume wait_random is defined as follows
-async def wait_random(max_delay: int) -> list[float]:
-    delay = randint(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+async def wait_random(max_delay=10):
+    """generte random number from 1 to max delay """
+    random_delay = random.uniform(0, max_delay) 
+    """
+    uniform generate a random floating number
+    asynchronusly wait for the generated delay random_delay"""
+    await asyncio.sleep(random_delay)
 
-def task_wait_random(max_delay: int) -> asyncio.Task:
-    return asyncio.create_task(wait_random(max_delay))
-
-
-wait_random = __import__('0-basic_async_syntax').wait_random
-
-print(asyncio.run(wait_random(0)))
-print(asyncio.run(wait_random(5)))
-print(asyncio.run(wait_random(15)))
+    return random_delay
 
