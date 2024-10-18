@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-asyncio
+Module  asyc
 """
-import time 
+
 import asyncio
 from typing import List
 
-task_wait_random = __import__("3-tasks.py").wait_n 
+task_wait_random = __import__('3-tasks').task_wait_random
 
-async def  task_wait_n( int, max_dekay: int) -> list[float]:
-    """func that take code  from wait_n and alter into new func"""
-    wait_times = asyncio.gather(
-        *turple(map(lambda _: task_wait_random(max_delay), range(n)
-        ))
-    )
-    return sorted(wait_times)
+
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
+    """
+    func that   spawn in n times with the specified max_delay.
+    """
+    tasks = [task_wait_random(max_delay) for i in range(n)]
+    return [await task for task in asyncio.as_completed(tasks)]
